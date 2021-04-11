@@ -1,9 +1,10 @@
-from discord.ext import commands
-from utils import msg_builder
-import user_messages as u_msg
-from session import session_manager
 from random import choice
-from bot.configs import bot_enum
+
+from discord.ext import commands
+
+from src.session import session_manager
+from src.utils import msg_builder
+from configs import user_messages as u_msg, bot_enum
 
 
 class Info(commands.Cog):
@@ -50,7 +51,8 @@ class Info(commands.Cog):
 
     @commands.command()
     async def servers(self, ctx):
-        await ctx.send(f'Pomomo is in {len(self.client.guilds)} servers!')
+        await ctx.send(f'Pomomo is in {len(self.client.guilds)} servers '
+                       f'with {len(session_manager.active_sessions)} active sessions!')
 
 
 def setup(client):
